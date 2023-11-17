@@ -28,7 +28,7 @@ namespace Space_invaders
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_spritetexture, _spritePosition, _spriteColour);
+            spriteBatch.Draw(_spritetexture, Position, _spriteColour);
         }
         public Vector2 Position
         {
@@ -43,3 +43,4 @@ namespace Space_invaders
         }
     }
 }
+

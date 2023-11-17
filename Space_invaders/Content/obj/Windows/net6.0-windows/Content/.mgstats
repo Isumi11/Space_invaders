@@ -1,1 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"G:/My Drive/Computer Science/MonoGame Projects/Space_invaders/Space_invaders/Content/Bulletplaceholder.png","G:/My Drive/Computer Science/MonoGame Projects/Space_invaders/Space_invaders/Content/bin/Windows/Content/Bulletplaceholder.xnb","TextureProcessor","Texture2DContent",131,485,0.7486826
+"G:/My Drive/Computer Science/MonoGame Projects/Space_invaders/Space_invaders/Content/Player.png","G:/My Drive/Computer Science/MonoGame Projects/Space_invaders/Space_invaders/Content/bin/Windows/Content/Player.xnb","TextureProcessor","Texture2DContent",200,8485,0.7995264
