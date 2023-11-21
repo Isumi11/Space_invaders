@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 
 namespace Space_invaders
 {
@@ -15,14 +15,19 @@ namespace Space_invaders
         public Sprite()
         { }
 
-        public Sprite(Texture2D spritetexture, Vector2 spritePosition, Rectangle spriteBox, Color spriteColour)
+        public Sprite(Vector2 spritePosition, Rectangle boundingBox, Color spriteColour)
         {
-            _spritetexture = spritetexture;
             _spritePosition = spritePosition;
-            _spriteBox = BoundingBox;
+            _spriteBox = boundingBox;
             _spriteColour = spriteColour;
         }
-        public virtual void update(GameTime gameTime)
+        public void LoadContent(ContentManager mycontent)
+        {
+            mycontent.RootDirectory = "Content";
+            _spritetexture = mycontent.Load<Texture2D>("Placeholder");
+
+        }
+        public virtual void Update(GameTime gameTime)
         {
 
         }

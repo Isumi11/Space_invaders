@@ -24,32 +24,37 @@ namespace Space_invaders
 
         }
 
-       
+        protected override void Initialize()
+        {
+
+            firstPlayer = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight - 90),
+                new Rectangle(), Color.White);
+
+            base.Initialize();
+        }
+
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            playerTexture = Content.Load<Texture2D>("Player");
 
-            firstPlayer = new Player(playerTexture, 
-                new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2), 
-                new Rectangle(), Color.White) ;
+            firstPlayer.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
-            
+            firstPlayer.Update(gameTime);
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(backColour);
+            GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
-            _spriteBatch.Draw(playerTexture, _spriteposition, Color.White);
+            firstPlayer.Draw(_spriteBatch);
             _spriteBatch.End();
 
 

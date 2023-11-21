@@ -19,63 +19,35 @@ namespace Space_invaders
         {
 
         }
-        public Player(Texture2D spritetexture, Vector2 spritePosition, Rectangle spriteBox, Color spriteColour)
-            : base(spritetexture, spritePosition, spriteBox, spriteColour)
+        public Player(Vector2 spritePosition, Rectangle spriteBox, Color spriteColour)
+            : base(spritePosition, spriteBox, spriteColour)
         {
             _spriteBox = spriteBox;
             _spriteColour = spriteColour;
             _spritePosition = spritePosition;
-            _spritetexture = spritetexture;
         }
         public void FireBullet()
         {
 
         }
-        //protected override void Initialize()
-        //{
-        //    // TODO: Add your initialization logic here
-        //    gameState = Black;
-        //    backColour = Color.Black;
 
-        //    base.Initialize();
-        //}
-
-        public override void update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            keyboard = Keyboard.GetState();
-
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 //left
-                position.X -= 3;
+                Position = new Vector2(Position.X - 3, Position.Y);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 //right
-                position.X += 3;
+                Position = new Vector2(Position.X + 3, Position.Y);
             }
-            if (keyboard.IsKeyDown(Keys.H) && prevkeyboard.IsKeyUp(Keys.H))
-            {
-                if (gameState == Black)
-                {
-                    gameState = Green;
-                    backColour = Color.LightGreen;
-                }
-                else if (gameState == Green)
-                {
-                    gameState = Blue;
-                    backColour = Color.DarkBlue;
-                }
-                else
-                {
-                    gameState = Black;
-                    backColour = Color.Black;
-                }
 
-
-            }
-            prevkeyboard = keyboard;
         }
+      
+
+    
 
         public int Lives
         {
