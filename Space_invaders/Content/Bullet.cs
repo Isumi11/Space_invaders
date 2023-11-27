@@ -1,38 +1,38 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using SharpDX;
 
 namespace Space_invaders.Content
 {
-    internal class Bullet
+    internal class Bullet : Sprite
     {
         Vector2 _bulletPosition;
         Rectangle _bulletBox;
-        Color _bulletColour;
-        Texture2D _bulletTexture;
+        private Sprite _ownerSprite;
+        private bool _isDrawn;
 
-        public Bullet()
-        { }
-
-        public Bullet(Vector2 bulletPosition, Rectangle boundingBox, Color bulletColour, Texture2D bullettexture)
+        public Bullet() : base()
         {
-            _bulletPosition = bulletPosition;
+
+        }
+        
+        public Bullet(Vector2 Position, Rectangle boundingBox, Color Colour, bool isDrawn, Sprite ownerSprite)
+        {
+            _bulletPosition = Position;
             _bulletBox = boundingBox;
-            _bulletColour = bulletColour;
-            _bulletTexture = bullettexture;
-        }
-        public void LoadContent(ContentManager mycontent)
-        {
-
-            bullettexture = mycontent.Load<Texture2D>("Bulletplaceholder");
+            _ownerSprite = ownerSprite;
+            _isDrawn = isDrawn;
 
         }
-        public void Draw(SpriteBatch spriteBatch)
+
+        public void PositionBullet()
         {
-            spriteBatch.Draw(bullettexture, Position, boundingBox, _bulletColour);
+            int halfway = _ownerSprite.SpriteTexture.Width / 2;
+            int topOfSprite = _ownerSprite.SpriteTexture.Height;
+
+            Position = new Vector2(_ownerSprite.Position.X / 2 - SpriteTexture.Width / 2,_ownerSprite.Position.Y);
         }
+
         public Vector2 Position
         {
             get { return _bulletPosition; }

@@ -11,20 +11,21 @@ namespace Space_invaders
         protected Vector2 _spritePosition;
         protected Rectangle _spriteBox;
         protected Color _spriteColour;
-
+        protected float RV = 3f;
+        protected float LV = 4f;
         public Sprite()
         { }
 
-        public Sprite(Vector2 spritePosition, Rectangle boundingBox, Color spriteColour)
+        public Sprite(Vector2 spritePosition, Rectangle boundingBox, Color spriteColour, Texture2D texture)
         {
             _spritePosition = spritePosition;
             _spriteBox = boundingBox;
             _spriteColour = spriteColour;
         }
-        public void LoadContent(ContentManager mycontent)
+        public void LoadContent(ContentManager mycontent, string textureName)
         {
             mycontent.RootDirectory = "Content";
-            _spritetexture = mycontent.Load<Texture2D>("Placeholder");
+            SpriteTexture = mycontent.Load<Texture2D>(textureName);
 
         }
         public virtual void Update(GameTime gameTime)
@@ -33,12 +34,17 @@ namespace Space_invaders
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_spritetexture, Position, _spriteColour);
+            spriteBatch.Draw(SpriteTexture, Position, _spriteColour);
         }
         public Vector2 Position
         {
             get { return _spritePosition; }
             set { _spritePosition = value; }
+        }
+        public Texture2D SpriteTexture
+        {
+            get { return _spritetexture; }
+            set { _spritetexture = value; }
         }
         public Rectangle BoundingBox
         {

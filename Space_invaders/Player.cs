@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Space_invaders
 {
@@ -14,20 +16,22 @@ namespace Space_invaders
         int gameState;
         KeyboardState keyboard, prevkeyboard;
         Color backColour;
+        
 
         public Player() : base()
         {
 
         }
         public Player(Vector2 spritePosition, Rectangle spriteBox, Color spriteColour)
-            : base(spritePosition, spriteBox, spriteColour)
+            //: base(spritePosition, spriteBox, spriteColour)
         {
             _spriteBox = spriteBox;
             _spriteColour = spriteColour;
             _spritePosition = spritePosition;
         }
-        public void FireBullet()
+        public void Bullet()
         {
+            
 
         }
 
@@ -43,6 +47,7 @@ namespace Space_invaders
                 //right
                 Position = new Vector2(Position.X + 3, Position.Y);
             }
+
 
         }
       

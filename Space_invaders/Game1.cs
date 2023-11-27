@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using Space_invaders.Content;
 
 namespace Space_invaders
 {
@@ -10,10 +10,8 @@ namespace Space_invaders
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Texture2D playerTexture;
-        private Vector2 _spriteposition;
         private Player firstPlayer;
-
+        private Bullet firstBullet;
 
         public Game1()
         {
@@ -29,6 +27,8 @@ namespace Space_invaders
 
             firstPlayer = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight - 90),
                 new Rectangle(), Color.White);
+            firstBullet = new Bullet(new Vector2(), new Rectangle(), Color.Pink, true, firstPlayer);
+
 
             base.Initialize();
         }
@@ -38,10 +38,13 @@ namespace Space_invaders
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            firstPlayer.LoadContent(Content);
+            firstPlayer.LoadContent(Content, "Placeholder");
+            firstBullet.LoadContent(Content, "Bulletplaceholder");
 
             // TODO: use this.Content to load your game content here
+            firstBullet.PositionBullet();
         }
+
 
         protected override void Update(GameTime gameTime)
         {
@@ -55,13 +58,13 @@ namespace Space_invaders
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
             firstPlayer.Draw(_spriteBatch);
+            firstBullet.Draw(_spriteBatch);
+            
             _spriteBatch.End();
-
-
 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
-        }
+        }       
     }
 }
