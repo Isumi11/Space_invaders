@@ -11,12 +11,10 @@ namespace Space_invaders
         protected Vector2 _spritePosition;
         protected Rectangle _spriteBox;
         protected Color _spriteColour;
-        protected float RV = 3f;
-        protected float LV = 4f;
         public Sprite()
         { }
 
-        public Sprite(Vector2 spritePosition, Rectangle boundingBox, Color spriteColour, Texture2D texture)
+        public Sprite(Vector2 spritePosition, Rectangle boundingBox, Color spriteColour)
         {
             _spritePosition = spritePosition;
             _spriteBox = boundingBox;

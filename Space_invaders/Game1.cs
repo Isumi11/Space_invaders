@@ -9,6 +9,7 @@ namespace Space_invaders
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private SpriteFont myFont;
 
         private Player firstPlayer;
         private Bullet firstBullet;
@@ -18,8 +19,9 @@ namespace Space_invaders
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            
 
+            _graphics.PreferredBackBufferWidth = 600;
+            _graphics.PreferredBackBufferHeight = 900;
         }
 
         protected override void Initialize()
@@ -27,7 +29,7 @@ namespace Space_invaders
 
             firstPlayer = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight - 90),
                 new Rectangle(), Color.White);
-            firstBullet = new Bullet(new Vector2(), new Rectangle(), Color.Pink, true, firstPlayer);
+            firstBullet = new Bullet(firstPlayer.Position, new Rectangle(), Color.Pink, true, firstPlayer);
 
 
             base.Initialize();
@@ -40,6 +42,7 @@ namespace Space_invaders
 
             firstPlayer.LoadContent(Content, "Placeholder");
             firstBullet.LoadContent(Content, "Bulletplaceholder");
+            myFont = Content.Load<SpriteFont>("File");
 
             // TODO: use this.Content to load your game content here
             firstBullet.PositionBullet();
@@ -49,7 +52,7 @@ namespace Space_invaders
         protected override void Update(GameTime gameTime)
         {
             firstPlayer.Update(gameTime);
-
+            //firstBullet.Position = firstPlayer.Position;
             base.Update(gameTime);
         }
 
@@ -59,6 +62,7 @@ namespace Space_invaders
             _spriteBatch.Begin();
             firstPlayer.Draw(_spriteBatch);
             firstBullet.Draw(_spriteBatch);
+            _spriteBatch.DrawString(myFont, $"X: {firstBullet.Position.X}, Y: {firstBullet.Position.Y}", new Vector2(10, 10), Color.White);
             
             _spriteBatch.End();
 

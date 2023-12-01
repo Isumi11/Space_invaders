@@ -9,30 +9,16 @@ namespace Space_invaders
     public class Player : Sprite
     {
         private int lives = 3;
-        Vector2 position;
-        Vector2 velocity;
-        private int spriteXvalue;
-        const int Black = 1, Blue = 2, Green = 3;
-        int gameState;
-        KeyboardState keyboard, prevkeyboard;
-        Color backColour;
-        
-
         public Player() : base()
         {
 
         }
         public Player(Vector2 spritePosition, Rectangle spriteBox, Color spriteColour)
-            //: base(spritePosition, spriteBox, spriteColour)
+            : base(spritePosition, spriteBox, spriteColour)
         {
             _spriteBox = spriteBox;
             _spriteColour = spriteColour;
             _spritePosition = spritePosition;
-        }
-        public void Bullet()
-        {
-            
-
         }
 
         public override void Update(GameTime gameTime)
@@ -50,9 +36,6 @@ namespace Space_invaders
 
 
         }
-      
-
-    
 
         public int Lives
         {

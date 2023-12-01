@@ -16,13 +16,14 @@ namespace Space_invaders.Content
 
         }
         
-        public Bullet(Vector2 Position, Rectangle boundingBox, Color Colour, bool isDrawn, Sprite ownerSprite)
+        public Bullet(Vector2 inPosition, Rectangle boundingBox, Color Colour, bool isDrawn, Sprite ownerSprite)
+            : base(inPosition, boundingBox, Colour)
         {
-            _bulletPosition = Position;
+            _bulletPosition = inPosition;
             _bulletBox = boundingBox;
             _ownerSprite = ownerSprite;
             _isDrawn = isDrawn;
-
+            _spriteColour = Colour;
         }
 
         public void PositionBullet()
@@ -30,20 +31,11 @@ namespace Space_invaders.Content
             int halfway = _ownerSprite.SpriteTexture.Width / 2;
             int topOfSprite = _ownerSprite.SpriteTexture.Height;
 
-            Position = new Vector2(_ownerSprite.Position.X / 2 - SpriteTexture.Width / 2,_ownerSprite.Position.Y);
+           // Position = new Vector2(_ownerSprite.Position.X / 2, SpriteTexture.Width / 2, _ownerSprite.Position.Y);
+
+            Position = new Vector2(_ownerSprite.Position.X / 2 + SpriteTexture.Width / 2,_ownerSprite.Position.Y);
         }
 
-        public Vector2 Position
-        {
-            get { return _bulletPosition; }
-            set { _bulletPosition = value; }
-        }
-        public Rectangle BoundingBox
-        {
-            get { return _bulletBox; }
-            set { _bulletBox = value; }
-
-        }
     }
     
 }
