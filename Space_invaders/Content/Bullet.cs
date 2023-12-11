@@ -1,15 +1,18 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.VisualBasic.Devices;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Space_invaders.Content
 {
-    internal class Bullet : Sprite
+    public class Bullet : Sprite
     {
         Vector2 _bulletPosition;
         Rectangle _bulletBox;
         private Sprite _ownerSprite;
         private bool _isDrawn;
+        private bool bulletFired;
 
         public Bullet() : base()
         {
@@ -25,17 +28,53 @@ namespace Space_invaders.Content
             _isDrawn = isDrawn;
             _spriteColour = Colour;
         }
+       
+        public void ResetToOwner(Sprite ownerSprite)
 
-        public void PositionBullet()
         {
-            int halfway = _ownerSprite.SpriteTexture.Width / 2;
-            int topOfSprite = _ownerSprite.SpriteTexture.Height;
+            Position = new Vector2(_ownerSprite.Position.X+(ownerSprite.SpriteTexture.Width/2),Position.Y);
 
-           // Position = new Vector2(_ownerSprite.Position.X / 2, SpriteTexture.Width / 2, _ownerSprite.Position.Y);
+        }
+        public override void Update(GameTime gameTime, bool gamestarted, int rightedge)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
 
-            Position = new Vector2(_ownerSprite.Position.X / 2 + SpriteTexture.Width / 2,_ownerSprite.Position.Y);
+                bulletFired = true;
+            }
+            if (Position.Y <= 0)
+            {
+                bulletFired = false;
+                ResetToOwner(Owner);
+            }
+            if (Position.Y > 0 && bulletFired) 
+            {
+                Position=new Vector2(Position.X,Position.Y-2);
+            }
+            if(Position.Y > 0 && !bulletFired)
+            {
+                Position = new Vector2(_ownerSprite.Position.X + (Owner.SpriteTexture.Width / 2 - SpriteTexture.Width/2), Position.Y);
+            }
+
+            base.Update(gameTime, gamestarted, rightedge);
+        }
+        public Sprite Owner
+        {
+            get { return _ownerSprite; }
+            set {_ownerSprite = value; }
         }
 
+
+        //public void PositionBullet()
+        //{
+        //    int halfway = _ownerSprite.SpriteTexture.Width / 2;
+        //    int topOfSprite = _ownerSprite.SpriteTexture.Height;
+
+        //    Position = new Vector2(_ownerSprite.Position.X / 2, SpriteTexture.Width / 2, _ownerSprite.Position.Y);
+
+        //    Position = new Vector2(_ownerSprite.Position.X / 2 + SpriteTexture.Width / 2,_ownerSprite.Position.Y);
+        //}
+
     }
-    
+
 }

@@ -21,7 +21,7 @@ namespace Space_invaders
             _spritePosition = spritePosition;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, bool gamestarted, int rightedge)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {

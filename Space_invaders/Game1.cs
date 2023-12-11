@@ -45,13 +45,13 @@ namespace Space_invaders
             myFont = Content.Load<SpriteFont>("File");
 
             // TODO: use this.Content to load your game content here
-            firstBullet.PositionBullet();
+           // firstBullet.PositionBullet();
         }
 
 
         protected override void Update(GameTime gameTime)
         {
-            firstPlayer.Update(gameTime);
+           firstPlayer.Update(gameTime);
             //firstBullet.Position = firstPlayer.Position;
             base.Update(gameTime);
         }

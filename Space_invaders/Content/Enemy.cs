@@ -1,27 +1,23 @@
-﻿using Microsoft.Xna.Framework.Content;
-using SharpDX.Direct3D11;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Space_invaders.Content;
 namespace Space_invaders.Content
 {
-    internal class Enemy
+    internal class Enemy : Sprite
     {
         private Texture2D _enemyTexture;
         protected Vector2 _enemyposition;
-        protected Rectangle _spriteBox;
-        protected Color _spriteColour;
-        public Sprite()
+        protected Rectangle _enemyBox;
+        protected Color _enemyColour;
+        public Enemy()
         { }
 
-        public Sprite(Vector2 spritePosition, Rectangle boundingBox, Color spriteColour)
+        public Enemy(Vector2 enemyposition, Rectangle boundingBox, Color enemyColour)
         {
-            _spritePosition = spritePosition;
-            _spriteBox = boundingBox;
-            _spriteColour = spriteColour;
+            _enemyposition = enemyposition;
+            _enemyBox = boundingBox;
+            _enemyColour = enemyColour;
         }
         public void LoadContent(ContentManager mycontent, string textureName)
         {

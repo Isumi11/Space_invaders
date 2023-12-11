@@ -26,8 +26,18 @@ namespace Space_invaders
             SpriteTexture = mycontent.Load<Texture2D>(textureName);
 
         }
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, bool gamestrated, int rightedge)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                //left
+                Position = new Vector2(Position.X - 3, Position.Y);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                //right
+                Position = new Vector2(Position.X + 3, Position.Y);
+            }
 
         }
         public void Draw(SpriteBatch spriteBatch)
