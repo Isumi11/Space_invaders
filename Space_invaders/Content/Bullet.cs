@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.Devices;
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,13 +28,14 @@ namespace Space_invaders.Content
             _isDrawn = isDrawn;
             _spriteColour = Colour;
         }
-       
-        public void ResetToOwner(Sprite ownerSprite)
+
+        public void ResetToOwner(Sprite Owner)
 
         {
-            Position = new Vector2(_ownerSprite.Position.X+(ownerSprite.SpriteTexture.Width/2),Position.Y);
+            Position = new Vector2(Owner.Position.X + Owner.SpriteTexture.Width / 2 - SpriteTexture.Width / 2, Position.Y);
 
         }
+        // public void ResetToOwner(Sprite owner)
         public override void Update(GameTime gameTime, bool gamestarted, int rightedge)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
@@ -53,7 +54,7 @@ namespace Space_invaders.Content
             }
             if(Position.Y > 0 && !bulletFired)
             {
-                Position = new Vector2(_ownerSprite.Position.X + (Owner.SpriteTexture.Width / 2 - SpriteTexture.Width/2), Position.Y);
+                Position = new Vector2(Owner.Position.X + (Owner.SpriteTexture.Width / 2 - SpriteTexture.Width/2), Position.Y);
             }
 
             base.Update(gameTime, gamestarted, rightedge);

@@ -19,11 +19,6 @@ namespace Space_invaders.Content
             _enemyBox = boundingBox;
             _enemyColour = enemyColour;
         }
-        public void LoadContent(ContentManager mycontent, string textureName)
-        {
-            mycontent.RootDirectory = "Content";
-            SpriteTexture = mycontent.Load<Texture2D>(textureName);
-
-        }
+       
     }
 }

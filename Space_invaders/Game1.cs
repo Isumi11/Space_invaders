@@ -29,7 +29,7 @@ namespace Space_invaders
 
             firstPlayer = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight - 90),
                 new Rectangle(), Color.White);
-            firstBullet = new Bullet(firstPlayer.Position, new Rectangle(), Color.Pink, true, firstPlayer);
+            firstBullet = new Bullet(firstPlayer.Position, new Rectangle(), Color.Red, true, firstPlayer);
 
 
             base.Initialize();
@@ -45,14 +45,14 @@ namespace Space_invaders
             myFont = Content.Load<SpriteFont>("File");
 
             // TODO: use this.Content to load your game content here
-           // firstBullet.PositionBullet();
+           //firstBullet.PositionBullet();
         }
 
 
         protected override void Update(GameTime gameTime)
         {
-           firstPlayer.Update(gameTime);
-            //firstBullet.Position = firstPlayer.Position;
+           firstPlayer.Update(gameTime, true,_graphics.PreferredBackBufferWidth);
+            firstBullet.Position = firstPlayer.Position;
             base.Update(gameTime);
         }
 
