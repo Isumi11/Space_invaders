@@ -23,7 +23,7 @@ namespace Space_invaders
         public void LoadContent(ContentManager mycontent, string textureName)
         {
             mycontent.RootDirectory = "Content";
-            SpriteTexture = mycontent.Load<Texture2D>(textureName);
+            _spritetexture = mycontent.Load<Texture2D>(textureName);
 
         }
         public virtual void Update(GameTime gameTime, bool gamestrated, int rightedge)

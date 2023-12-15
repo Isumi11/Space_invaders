@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Space_invaders.Content;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
-
 namespace Space_invaders
 {
     public class Game1 : Game
@@ -17,15 +16,14 @@ namespace Space_invaders
         private Bullet firstBullet;
         private Texture2D enemyTexture;
         private Enemy firstEnemy;
-        bool Isdrawn;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = 600;
-            _graphics.PreferredBackBufferHeight = 900;
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 1000;
         }
 
         protected override void Initialize()
@@ -34,13 +32,7 @@ namespace Space_invaders
             firstPlayer = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight - 90),
                 new Rectangle(), Color.White);
             firstBullet = new Bullet(firstPlayer.Position, new Rectangle(), Color.Red, true, firstPlayer);
-            firstEnemy = new Enemy(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight - 70),
-                new Rectangle(), Color.Blue);
-            DrawAllEnemys(enemyTexture, _graphics.PreferredBackBufferWidth);
-
-
-
-
+            firstEnemy = new Enemy();
             base.Initialize();
         }
        
@@ -54,20 +46,20 @@ namespace Space_invaders
             myFont = Content.Load<SpriteFont>("File");
             firstEnemy.LoadContent(Content, "enemy911");
             
-           // DrawAllEnemys(enemyTexture, _graphics.PreferredBackBufferWidth);
+           DrawAllEnemys(firstEnemy.SpriteTexture, _graphics.PreferredBackBufferWidth);
 
             // TODO: use this.Content to load your game content here
             //firstBullet.PositionBullet();
         }
         public void DrawAllEnemys(Texture2D enemyTexture, int screenWidth)
         {
-            enemyArray = new Enemy[screenWidth / enemyTexture.Width, 5];
+            enemyArray = new Enemy[screenWidth / enemyTexture.Width, 3];
 
             for (int i = 0; i < enemyArray.GetLength(0); i++)
             {
                 for (int j = 0; j < enemyArray.GetLength(1); j++)
                 {
-                    enemyArray[i, j] = new Enemy(enemyTexture, new Vector2(i * enemyTexture.Width, j * enemyTexture.Height),
+                    enemyArray[i, j] = new Enemy(firstEnemy.SpriteTexture, new Vector2(i * enemyTexture.Width, j * enemyTexture.Height),
                         new Rectangle(i * enemyTexture.Width, j * enemyTexture.Height, enemyTexture.Width, enemyTexture.Height), Color.White);
                 }
 
@@ -77,7 +69,9 @@ namespace Space_invaders
 
         protected override void Update(GameTime gameTime)
         {
-           firstPlayer.Update(gameTime, true,_graphics.PreferredBackBufferWidth);
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Space))
+                Exit();
+            firstPlayer.Update(gameTime, true,_graphics.PreferredBackBufferWidth);
             firstBullet.Position = firstPlayer.Position;
             base.Update(gameTime);
         }
