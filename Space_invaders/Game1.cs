@@ -45,8 +45,8 @@ namespace Space_invaders
             firstBullet.LoadContent(Content, "Bulletplaceholder");
             myFont = Content.Load<SpriteFont>("File");
             firstEnemy.LoadContent(Content, "enemy911");
-            
-           DrawAllEnemys(firstEnemy.SpriteTexture, _graphics.PreferredBackBufferWidth);
+
+            DrawAllEnemys(firstEnemy.SpriteTexture, _graphics.PreferredBackBufferWidth);
 
             // TODO: use this.Content to load your game content here
             //firstBullet.PositionBullet();
@@ -69,10 +69,12 @@ namespace Space_invaders
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            
             firstPlayer.Update(gameTime, true,_graphics.PreferredBackBufferWidth);
-            firstBullet.Position = firstPlayer.Position;
+            firstBullet.Update(gameTime, true, _graphics.PreferredBackBufferWidth);
+            
             base.Update(gameTime);
         }
 

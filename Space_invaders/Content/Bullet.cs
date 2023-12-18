@@ -43,18 +43,18 @@ namespace Space_invaders.Content
 
                 bulletFired = true;
             }
-            if (Position.Y <= 0)
+            if (Position.Y <= 5)
             {
                 bulletFired = false;
                 ResetToOwner(Owner);
             }
-            if (Position.Y > 0 && bulletFired) 
+            if (Position.Y >= 0 && bulletFired) 
             {
                 Position=new Vector2(Position.X,Position.Y-2);
             }
             if(Position.Y > 0 && !bulletFired)
             {
-                Position = new Vector2(Owner.Position.X + (Owner.SpriteTexture.Width / 2 - SpriteTexture.Width/2), Position.Y);
+                Position = new Vector2(+Owner.Position.X + (Owner.SpriteTexture.Width / 2 - SpriteTexture.Width/2), Position.Y);
             }
 
             base.Update(gameTime, gamestarted, rightedge);
@@ -62,7 +62,7 @@ namespace Space_invaders.Content
         public Sprite Owner
         {
             get { return _ownerSprite; }
-            set {_ownerSprite = value; }
+            set { _ownerSprite = value; }
         }
 
 

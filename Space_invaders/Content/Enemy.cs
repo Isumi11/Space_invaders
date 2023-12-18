@@ -70,6 +70,7 @@ namespace Space_invaders.Content
                 }
             }
         }
+        
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             int width = Texture.Width / Columns;
@@ -85,6 +86,7 @@ namespace Space_invaders.Content
             spriteBatch.End();
         }
 
+                   
 
 
         public class enemyColour
