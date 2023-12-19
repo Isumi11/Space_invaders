@@ -32,6 +32,7 @@ namespace Space_invaders
             firstPlayer = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight - 90),
                 new Rectangle(), Color.White);
             firstBullet = new Bullet(firstPlayer.Position, new Rectangle(), Color.Red, true, firstPlayer);
+          
             firstEnemy = new Enemy();
             base.Initialize();
         }
@@ -74,7 +75,6 @@ namespace Space_invaders
             
             firstPlayer.Update(gameTime, true,_graphics.PreferredBackBufferWidth);
             firstBullet.Update(gameTime, true, _graphics.PreferredBackBufferWidth);
-            
             base.Update(gameTime);
         }
 

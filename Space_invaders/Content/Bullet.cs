@@ -29,12 +29,12 @@ namespace Space_invaders.Content
             _spriteColour = Colour;
         }
 
-        public void ResetToOwner(Sprite Owner)
-
+        public void ResetToOwner(Sprite ownerSprite)
         {
-            Position = new Vector2(Owner.Position.X + Owner.SpriteTexture.Width / 2 - SpriteTexture.Width / 2, Position.Y);
-
+            Position = new Vector2(ownerSprite.Position.X + ownerSprite.SpriteTexture.Width / 2 - SpriteTexture.Width / 2,
+                ownerSprite.Position.Y);
         }
+
         // public void ResetToOwner(Sprite owner)
         public override void Update(GameTime gameTime, bool gamestarted, int rightedge)
         {
@@ -43,18 +43,19 @@ namespace Space_invaders.Content
 
                 bulletFired = true;
             }
-            if (Position.Y <= 5)
+            if (Position.Y <= 0)
             {
                 bulletFired = false;
                 ResetToOwner(Owner);
             }
-            if (Position.Y >= 0 && bulletFired) 
+            if (Position.Y > 0 && bulletFired) 
             {
                 Position=new Vector2(Position.X,Position.Y-2);
             }
             if(Position.Y > 0 && !bulletFired)
             {
-                Position = new Vector2(+Owner.Position.X + (Owner.SpriteTexture.Width / 2 - SpriteTexture.Width/2), Position.Y);
+                Position = new Vector2(
+                    Owner.Position.X + (Owner.SpriteTexture.Width / 2 - SpriteTexture.Width/2), Position.Y);
             }
 
             base.Update(gameTime, gamestarted, rightedge);
